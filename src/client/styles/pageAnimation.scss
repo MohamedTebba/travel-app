@@ -1,0 +1,42 @@
+@import './colors.scss';
+
+.move-right {
+    transform: translateX(-1500%);
+    transition: all 1s ease-in-out;
+}
+
+.move-left {
+    
+    transform: translateX(150%);
+    transition: all .3s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: all .3s ease-in-out;
+
+}
+
+.toggle-burger {
+    // background-color: red;
+
+    span {        
+        background-color: $Arizona-1-hex !important;
+
+        &:first-child {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:last-child {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+    }
+}
+
+.toggle-mobile-menu {
+    visibility: visible;
+}

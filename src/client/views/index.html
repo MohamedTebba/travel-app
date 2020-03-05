@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel app</title>
+</head>
+<body>
+    <!--SPLASH SCREEN-->
+    <section class="splash-screen">
+        <span></span><span></span>
+        <div class="splash-screen__content">
+            <h1 class="splash-screen__header">Get ready for your journey!</h1>
+            <p class="splash-screen__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ad repellendus nihil.</p>
+            <a href="" class="splash-screen__button">get started</a>
+            
+        </div>
+    </section>
+    <!--SIGNI IN SCREEN-->
+    <section class="sign-in form-section">
+        <form action="" class="form">
+            <span class="input-container">
+                <input type="text" name="" id="sign-in-name" class="inputs" required>
+                <label for="sign-in-name">user name</label>
+            </span>
+            <span class="input-container">
+                <input type="password" name="" id="sign-in-pssw" class="inputs" required>
+                <label for="sign-in-pssw">password</label>
+            </span>
+            <input type="submit" value="login" class="sub-btn" id="login-btn">
+            <a href="" class="new-user">new user?</a>
+        </form>
+    </section>
+    
+    <!--SIGNI UP SCREEN-->
+    <section class="sign-up form-section">
+        <form action="" class="form">
+            <span class="input-container">
+                <input type="text" name="" id="sign-up-name" class="inputs" required>
+                <label for="sign-up-name">user name</label>
+            </span>
+            <span class="input-container">
+                <input type="password" name="" id="sign-up-pssw" class="inputs" required>
+                <label for="sign-up-pssw">password</label>
+            </span>
+            <span class="input-container">
+                <input type="password" name="" id="confirm-pssw" class="inputs" required>
+                <label for="confirm-pssw">confirm password</label>
+            </span>
+            <input type="submit" value="register" class="sub-btn" id="reg-btn">
+        </form>
+    </section>
+    
+    <!--WELCOME SCREEN-->
+    <section class="welcome-screen">
+        <h1 class="welcome-screen__greetings">
+            hi username,
+        </h1>
+        <p class="welcome-screen__text">
+            start your first trip
+        </p>
+    </section>
+
+    <!--SAVE A TRIP-->
+    <section class="save-trip form-section">
+        <form action="" class="form">
+            <span class="input-container">
+                <input type="text" name="" id="trip-location" class="inputs" required>
+                <label for="trip-location">my trip to</label>
+            </span>
+            <span class="input-container">
+                <input type="text" name="" id="departing" class="inputs" required>
+                <label for="departing">departing</label>
+            </span>
+            <input type="submit" value="save" class="sub-btn" id="save-trip-btn">
+            <input type="button" class="cancel-trip" value="cancel">
+        </form>
+    </section>
+
+    <section class="trip">
+        <div class="trip__container">
+            <div class="trip__from"> <span>from</span> <h1>london</h1></div>
+            <div class="trip__to"><span>to</span>  <h1>paris</h1></div>
+            <div class="trip__img">
+                <p class="trip__weather">
+                    typical weather for then is:
+                    <span>high:  46°</span>
+                    <span>low:  35°</span>
+                    mostly cloudy throughout the day
+                </p>
+            </div>
+            <span class="trip__length">paris, france is 220 days away
+            </span>
+        </div>
+        <div class="trip__tabbar">
+            <div class="circular-icons circular-icons__lodging">
+                <i class="fas fa-hotel"></i>
+            </div>
+            <div class="circular-icons circular-icons__packing">
+                <i class="fas fa-luggage-cart"></i>
+            </div>
+            <!-- <div class="circular-icons circular-icons__todo"></div> -->
+            <div class="circular-icons circular-icons__add-trip" id="add-trip">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="circular-icons__add-trip--bg"></div>
+        </div>
+        <a href="" class="humberger-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        <div class="trip__menu">
+            <nav>
+                <a href="">
+                    <i class="fas fa-list desk-icon"></i>
+                    your trips list</a>
+                <a href="">
+                    <i class="fas fa-hotel desk-icon"></i>
+                    your lodging</a>
+                <a href="">
+                    <i class="fas fa-luggage-cart desk-icon"></i>
+                    your packing</a>
+                <a href="">logout</a>
+            </nav>
+        </div>
+        
+    </section>
+
+    <!--TRIPS LIST-->
+    <section class="trips-list">
+        <div class="trips-list__container">
+            <h1 class="trips-list__header">
+                your trips list
+            </h1>
+            <div class="trips-list__container">
+                <div class="trips-list__card">
+                    <span>
+                        <i class="fas fa-map-marker-alt"></i>
+                        to paris
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="add-trip"> 
+            <i class="fas fa-plus"></i>
+        </div>
+    </section>
+
+</body>
+</html>

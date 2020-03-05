@@ -1,0 +1,44 @@
+@import './colors.scss';
+@import './standard.scss';
+
+.welcome-screen {
+    display: none;
+    z-index: 17;
+    opacity: 1;
+    @extend %center-layout;
+    
+    @media(min-width: 768px){
+        // display: flex;
+        // @include clear-layout();
+        // display: none;
+        // position: relative;
+        // grid-row: 3/4;
+        // grid-column: 1/3;
+        width: 100%;
+        align-items: center;
+    }
+    
+    background-image: 
+    linear-gradient(220deg, $Arizona-6-rgba 0%, $Arizona-2-rgba 60%, $Arizona-1-rgba 100%),
+    url('../assets/hero-mobile_3.jpg');
+    @extend %background;
+    // display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    
+    &__greetings{
+        color: $Arizona-3-hex;
+        @include header();
+        text-transform: capitalize;
+    }
+    
+    &__text {
+        text-transform: capitalize;
+        color: $Arizona-4-hex;
+        padding: 1rem;
+        @include description();
+        
+    }
+    
+}

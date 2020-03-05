@@ -1,0 +1,282 @@
+@import './colors.scss';
+@import './standard.scss';
+
+.trip {
+    display: none;
+    background-color: $Arizona-7-hex;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    z-index: 15;
+    // @extend %center-layout;
+    margin: auto;
+    
+    @media(min-height: 601px) {
+        // display: flex;
+        // display: ;
+        // z-index: 20;
+        align-items: center;
+    }
+    
+    @media(min-width: 768px) {
+        width: 58vw;
+        margin-left: 0;
+        // max-height: 100vh;
+        // display: grid;
+        grid-column: 1/2;
+        grid-row: 1/2;
+        // @include clear-layout();
+        display: none;
+    }
+
+    &__container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(4, max-content);
+        grid-gap: 1rem;
+        padding-top: 1rem;
+
+    }
+
+    &__from,
+    &__to {
+        color: $Arizona-4-hex;
+        text-transform: capitalize;
+        @extend %prefered-padding;
+        
+        span {
+            color: $Arizona-3-hex;
+            @extend %sub-title;
+        }
+        
+        h1 {
+            @extend %title;
+
+        }
+
+    }
+
+    &__img {
+        position: relative;
+        width: 100%;
+        height: 20rem;
+        background-image:
+            linear-gradient($Arizona-7-hex 0%,
+                $Arizona-6-rgba 40%, $Arizona-6-rgba 50%, $Arizona-6-rgba 75%, $Arizona-7-hex 100%),
+            linear-gradient($Arizona-6-rgba 0%, $Arizona-6-rgba 100%),
+            url('../assets/hero-mobile_6.jpg');
+        @extend %background;
+        background-clip: padding-box;
+
+        @media(min-width: 768px) {
+            height: 22rem;
+        }
+
+    }
+
+    &__weather {
+        position: absolute;
+        color: $Arizona-3-hex;
+        padding: 1rem .8rem;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+        
+        @include description();
+        
+        span {
+            display: block;
+            padding: 1rem 0;
+            @extend %title;
+            &::first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+    
+    &__length {
+        @extend %prefered-padding;
+        // text-transform: capitalize;
+        color: $Arizona-4-hex;
+        @include description();
+        &::first-letter {
+            text-transform: capitalize;
+        }
+        
+    }
+
+    &__from,
+    &__to,
+    &__length {
+        @media(min-width: 768px) {
+            padding-left: 3rem;
+        }
+    }
+
+    &__tabbar {
+
+        @media(min-width:768px){
+            display: none;
+        }
+
+        background-color: $Arizona-4-hex;
+        height: 3rem;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        border-radius: 1rem 1rem 0 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
+
+        .circular-icons {
+            @extend %display-center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: $Arizona-3-hex;
+            cursor: pointer;
+            color: $Arizona-7-hex;
+            font-size: 1.2rem;
+
+            &__add-trip {
+                font-size: 2rem;
+                z-index: 2;
+                width: 3rem;
+                height: 3rem;
+                background-color: $Arizona-4-hex;
+                position: absolute;
+                left: 50%;
+                top: -70%;
+                transform: translateX(-50%);
+                box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
+
+                &--bg {
+                    display: block;
+                    background-color: $Arizona-7-hex;
+                    width: 4rem;
+                    height: 2.5rem;
+                    border-bottom-left-radius: 4rem;
+                    border-bottom-right-radius: 4rem;
+                    position: absolute;
+                    top: -30%;
+
+                }
+            }
+
+
+        }
+    }
+
+    &__menu {
+        z-index: 14;
+        visibility: hidden;
+        width: 100%;
+        min-height: 100vh;
+        top: 0;
+        position: fixed;
+        background-color: $Arizona-3-hex;
+       
+        @media(min-width: 768px){
+            // background-color: red;
+            visibility: visible;
+            min-height: 4rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // position: relative;
+            
+        }
+        
+        nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100vh;
+            // background-color: red;
+            
+            @media(min-width: 768px) {
+                width: 100%;
+                flex-direction: row;
+                height: inherit !important;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+            a {
+                display: block;
+                @extend %button;
+                
+                &:last-child {
+                    color: $Arizona-1-hex;
+                    @include description();
+                }
+                
+                &:hover {
+                    cursor: pointer;
+                    color: $Arizona-7-hex;
+                    transition: all .2s ease-in-out;
+
+                }
+                
+                // cursor: pointer;
+                .desk-icon{
+                    // visibility: hidden;
+                    display: none;
+
+                    @media(min-width: 768px) {
+                        display: inline-block;
+                        margin-right: .5rem;
+                    }
+                }
+
+            }
+        }
+    }
+
+    .humberger-toggle {
+        position: absolute;
+        z-index: 16;
+        top: 1rem;
+        right: 1rem;
+        display: block;
+        width: 48px;
+        height: 48px;
+
+        @media(min-width: 768px){
+            display: none;
+        }
+
+        span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: $Arizona-3-hex;
+            position: absolute;
+            left: 11px;
+            transition: all .3s;
+
+            &:first-child {
+                top: 12px
+            }
+
+            &:nth-child(2) {
+                top: 50%;
+                margin-top: -1px;
+            }
+
+            &:last-child {
+                bottom: 12px;
+            }
+        }
+
+    }
+
+}
