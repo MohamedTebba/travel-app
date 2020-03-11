@@ -77,14 +77,14 @@ export default function deskUIController () {
         /*** */
         saveTripScreen.addEventListener('click', (e) => {
         
-            if(e.target === domItems.saveTripBtn) {
+            // if(e.target === domItems.saveTripBtn) {
         
-                tripsListScreen.style.display = 'grid'
-                tripScreen.style.display = 'grid'
-                setTimeout(() => {
-                    saveTripScreen.classList.add('move-right') 
-                }, 500)
-            }
+            //     tripsListScreen.style.display = 'grid'
+            //     tripScreen.style.display = 'grid'
+            //     setTimeout(() => {
+            //         saveTripScreen.classList.add('move-right') 
+            //     }, 500)
+            // }
         
             if(e.target === domItems.cancelTrip) {
         

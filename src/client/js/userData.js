@@ -17,7 +17,7 @@ export default class UsersList {
 
         const storedUsers = JSON.parse(localStorage.getItem('users'))
 
-      const test = storedUsers.filter(u => (u[0] === user.name && u[1] === user.password) ) 
+      const test = storedUsers.filter(u => (u[0].toLowerCase() === user.name.toLowerCase() && u[1] === user.password) ) 
       if(test.length > 0)
       {
           return true

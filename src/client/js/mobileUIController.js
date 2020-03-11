@@ -75,14 +75,14 @@ export default function mobileUIController () {
         /*** */
         saveTripScreen.addEventListener('click', (e) => {
         
-            if(e.target === saveTripBtn) {
+            // if(e.target === saveTripBtn) {
         
-                tripScreen.style.display = 'grid'
-                tripsListScreen.style.display = 'none'
-                setTimeout(() => {
-                    saveTripScreen.classList.add('move-right') 
-                }, 500)
-            }
+            //     tripScreen.style.display = 'grid'
+            //     tripsListScreen.style.display = 'none'
+            //     setTimeout(() => {
+            //         saveTripScreen.classList.add('move-right') 
+            //     }, 500)
+            // }
         
             if(e.target === cancelTrip) {
         

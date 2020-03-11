@@ -21,7 +21,17 @@ const domStrings = {
     newNameInput: '#sign-up-name',
     newPassInput: '#sign-up-pssw',
     confPassInput: '#confirm-pssw',
-    userNameHeader: '.welcome-screen__greetings'
+    userNameHeader: '.welcome-screen__greetings',
+    tripCity: '#trip-city',
+    tripCountry: '#trip-country',
+    departingTime: '#departing-time',
+    departingDate: '#departing-date',
+    tripDestination: '.trip__to h1',
+    tripDestinationImg: '.trip__img',
+    tripDestinationWether: '.trip__weather',
+    tripToDestinationCounter: '.trip__counter',
+    tripDestinationWeatherIcon: '.trip__wether-icon img'
+
 }
 
 
@@ -49,7 +59,16 @@ const domItems = {
     newNameInput: document.querySelector(domStrings.newNameInput),
     newPasswordInput: document.querySelector(domStrings.newPassInput),
     confirmPasswordInput: document.querySelector(domStrings.confPassInput),
-    userNameHeader: document.querySelector(domStrings.userNameHeader)
+    userNameHeader: document.querySelector(domStrings.userNameHeader),
+    tripCityInput: document.querySelector(domStrings.tripCity),
+    tripCountryInput: document.querySelector(domStrings.tripCountry),
+    tripDateInput: document.querySelector(domStrings.departingDate),
+    tripTimeInput: document.querySelector(domStrings.departingTime),
+    tripDestination: document.querySelector(domStrings.tripDestination),
+    tripDestinationImg: document.querySelector(domStrings.tripDestinationImg),
+    tripDestinationWether: document.querySelector(domStrings.tripDestinationWether),
+    tripDestinationWeatherIcon: document.querySelector(domStrings.tripDestinationWeatherIcon),
+    tripToDestinationCounter: document.querySelector(domStrings.tripToDestinationCounter)
 
 }
 

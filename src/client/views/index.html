@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel app</title>
 </head>
-<body>
+<body>  
+    </div>
     <!--SPLASH SCREEN-->
     <section class="splash-screen">
         <span></span><span></span>
@@ -65,23 +66,36 @@
     <section class="save-trip form-section">
         <form action="" class="form">
             <span class="input-container">
-                <input type="text" name="" id="trip-location" class="inputs" required>
-                <label for="trip-location">my trip to</label>
+                <input type="text" name="" id="trip-city" class="inputs" required>
+                <label for="trip-city">city</label>
             </span>
             <span class="input-container">
-                <input type="text" name="" id="departing" class="inputs" required>
-                <label for="departing">departing</label>
+                <input type="text" name="" id="trip-country" class="inputs" required>
+                <label for="trip-country">coutry</label>
+            </span>
+            <span class="input-container">
+                <input type="date" name="" id="departing-date" class="inputs" value="2020-01-01" required>
+                <label for="departing-date">date</label>
+            </span>
+            <span class="input-container">
+                <input type="time" name="" id="departing-time" class="inputs" value="00:00" required>
+                <label for="departing-time">time</label>
             </span>
             <input type="submit" value="save" class="sub-btn" id="save-trip-btn">
             <input type="button" class="cancel-trip" value="cancel">
         </form>
     </section>
 
+    <!--TRIP SECTION-->
     <section class="trip">
         <div class="trip__container">
+            
             <div class="trip__from"> <span>from</span> <h1>london</h1></div>
             <div class="trip__to"><span>to</span>  <h1>paris</h1></div>
             <div class="trip__img">
+                <div class="trip__wether-icon">
+                    <img src="https://darksky.net/images/weather-icons/cloudy.png" alt="cloudy-icon">
+                </div>
                 <p class="trip__weather">
                     typical weather for then is:
                     <span>high:  46°</span>
@@ -89,7 +103,7 @@
                     mostly cloudy throughout the day
                 </p>
             </div>
-            <span class="trip__length">paris, france is 220 days away
+            <span class="trip__counter">paris, france is 220 days away
             </span>
         </div>
         <div class="trip__tabbar">
