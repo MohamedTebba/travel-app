@@ -40,7 +40,29 @@ export function updateTripUI(location, res, time) {
     const icon = res.icon 
 
     tripDestinationWeatherIcon.src = `https://darksky.net/images/weather-icons/${icon}.png`
-    tripDestinationWeatherIcon.alt = icon+'icon'
+    tripDestinationWeatherIcon.alt = icon+'-icon'
     
 
+}
+
+export function updateTripsList(tripsList) {
+
+    const fragment = document.createDocumentFragment()
+    tripsList.forEach(trip => {
+        const tripCard = document.createElement('div')
+        tripCard.setAttribute('class','trips-list__card')
+        const span = document.createElement('span')
+        const destination = document.createTextNode(trip.placename)
+        const icon = document.createElement('i')
+        icon.setAttribute('class', 'fas fa-map-marker-alt')
+        span.appendChild(icon)
+        span.appendChild(destination)
+        tripCard.appendChild(span)
+        tripCard.style.backgroundImage=`linear-gradient(0deg,#262626 0%, rgba(38, 38, 38, .35) 30%, rgba(38, 38, 38, .35) 100%),url(${trip.URL})`
+        fragment.appendChild(tripCard)
+
+    })
+    document.querySelector('.inner-container').innerHTML = ''
+    document.querySelector('.inner-container').appendChild(fragment)
+    
 }

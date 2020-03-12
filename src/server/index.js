@@ -57,7 +57,7 @@ app.get('/', async(req, res) => {
     try {
         const geoData = await geoResponse.json()
         console.log('geodata done')
-        const index = Math.round(Math.random()*geoData.postalCodes.length)
+        const index = Math.round(Math.random()*geoData.postalCodes.length) === geoData.postalCodes.length? Math.round(Math.random()*geoData.postalCodes.length)-1:Math.round(Math.random()*geoData.postalCodes.length)
         // console.log(index)
 
         const darkSkyResponse = projectData.fullTime ?

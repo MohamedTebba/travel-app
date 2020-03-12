@@ -20,7 +20,7 @@ import login from './js/login'
 import {getData, postData} from './js/API'
 const { getCode } = require('country-list')
 import {Trips, Trip} from './js/createTrip'
-import {updateTripUI} from './js/createTheDom'
+import {updateTripUI, updateTripsList} from './js/createTheDom'
 // const cities = require("all-the-cities")
 // import cities from 'all-the-cities'
 
@@ -124,6 +124,7 @@ saveTripBtn.addEventListener('click', () => {
                    newTrip.setTravelingLocation(location)
                     tripsList.addTrip(newTrip)
                     console.log(tripsList.trips)
+                    updateTripsList(tripsList.trips)
                     
                 })
 
@@ -152,6 +153,7 @@ saveTripBtn.addEventListener('click', () => {
                    newTrip.setTravelingLocation(location)
                     tripsList.addTrip(newTrip)
                     console.log(tripsList.trips)
+                    updateTripsList(tripsList.trips)
                     
                 })
                 

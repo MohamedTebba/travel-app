@@ -28,12 +28,8 @@
         justify-content: space-between;
         align-items: center;
         
-        // position: relative;
-        // display: grid;
-        // grid-template-columns: repeat(2, max-content);
-        // grid-template-rows: 1fr;
-        // grid-gap: 1rem;
     }
+
 
     &__card{
         position: relative;
@@ -46,6 +42,7 @@
         linear-gradient(0deg, $Arizona-6-hex 0%, $Arizona-6-rgba 30%, $Arizona-6-rgba 100%),
         url('../assets/hero-mobile_6.jpg');
         @extend %background;
+        // margin: 0 1rem;
         
         &:hover {
             box-shadow: 0 10px 20px rgba(82, 74, 74, 0.5);
@@ -106,4 +103,25 @@
             transition: all .3s ease-in-out;
         }
     }
+}
+
+.inner-container{
+    display: flex;
+  flex-wrap: nowrap;
+//   overflow-x: scroll;
+overflow-y: auto;
+  
+.trips-list__card {
+    flex: 0 0 auto;
+    margin: 2rem 1rem;
+  }
+
+  width: 320px;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+   
 }
