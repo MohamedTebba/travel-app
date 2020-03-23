@@ -74,11 +74,11 @@
                 <label for="trip-country">coutry</label>
             </span>
             <span class="input-container">
-                <input type="date" name="" id="departing-date" class="inputs" value="2020-01-01" required>
+                <input type="date" name="" id="departing-date" class="inputs" required>
                 <label for="departing-date">date</label>
             </span>
             <span class="input-container">
-                <input type="time" name="" id="departing-time" class="inputs" value="00:00" required>
+                <input type="time" name="" id="departing-time" class="inputs" required>
                 <label for="departing-time">time</label>
             </span>
             <input type="submit" value="save" class="sub-btn" id="save-trip-btn">
@@ -90,21 +90,19 @@
     <section class="trip">
         <div class="trip__container">
             
-            <div class="trip__from"> <span>from</span> <h1>london</h1></div>
-            <div class="trip__to"><span>to</span>  <h1>paris</h1></div>
-            <div class="trip__img">
-                <div class="trip__wether-icon">
+            
+            <!-- <div class="trip__from"> <span>from</span> <h1>london</h1></div>
+            <div class="trip__to"><span>to</span>  <h1>paris</h1></div> -->
+            <!-- <div class="trip__img"> -->
+                <!-- <div class="trip__wether-icon">
                     <img src="https://darksky.net/images/weather-icons/cloudy.png" alt="cloudy-icon">
-                </div>
-                <p class="trip__weather">
-                    typical weather for then is:
-                    <span>high:  46°</span>
-                    <span>low:  35°</span>
-                    mostly cloudy throughout the day
-                </p>
-            </div>
-            <span class="trip__counter">paris, france is 220 days away
-            </span>
+                </div> -->
+            <!-- </div> -->
+                    <p class="trip__weather">
+                        none to show, click on a trip or start by adding one!
+                    </p>
+            <!-- <span class="trip__counter">paris, france is 220 days away
+            </span> -->
         </div>
         <div class="trip__tabbar">
             <div class="circular-icons circular-icons__lodging">
@@ -126,16 +124,16 @@
           </a>
         <div class="trip__menu">
             <nav>
-                <a href="">
+                <a href="" id="your-trips-list-btn">
                     <i class="fas fa-list desk-icon"></i>
                     your trips list</a>
                 <a href="">
                     <i class="fas fa-hotel desk-icon"></i>
                     your lodging</a>
-                <a href="">
-                    <i class="fas fa-luggage-cart desk-icon"></i>
+                <a href="" id="your-packing-btn">
+                    <i class="fas fa-luggage-cart desk-icon" ></i>
                     your packing</a>
-                <a href="">logout</a>
+                <a href="" id='logout-btn'>logout</a>
             </nav>
         </div>
         
@@ -176,6 +174,36 @@
         </div>
         <div class="add-trip"> 
             <i class="fas fa-plus"></i>
+        </div>
+    </section>
+
+    <!-- PACKING LIST -->
+    <section class="packing move-right">
+        <span id="back-arrow"><i class="fas fa-arrow-left"></i></span>
+        <div class="packing__container">
+            <!-- <h1 class="packing__dest">Trip to Paris</h1> -->
+            <!-- <ul class="packing__list"> -->
+                <!-- <li><span><i class="far fa-square"></i>jeans</span><span class="qnt">1</span></li>
+                <li><span><i class="far fa-square"></i>socks</span><span class="qnt">5</span></li>
+                <li><span><i class="far fa-square"></i>t-shirts</span><span class="qnt">5</span></li> -->
+            <!-- </ul> -->
+        </div>
+        <span class="packing__add-item"><i class="fas fa-plus"></i>add item</span>
+    </section>
+    
+    <!-- ADD ITEM PANEL -->
+    <section class="add-item form-section">
+        <div class="add-item__container">
+            <span class="input-container">
+                <input type="text" name="" id="item" class="inputs" required>
+                <label for="item">item</label>
+            </span>
+            <span class="input-container">
+                <input type="number" name="" id="item-qnt" class="inputs" required>
+                <label for="item-qnt">item quantity</label>
+            </span>
+            <input type="submit" value="add" class="sub-btn" id="add-item-btn">
+            <!-- <span class="packing__add-item"><i class="fas fa-plus"></i></span> -->
         </div>
     </section>
 

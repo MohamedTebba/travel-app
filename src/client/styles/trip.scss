@@ -7,7 +7,7 @@
     min-height: 600px;
     position: relative;
     overflow: hidden;
-    z-index: 15;
+    // z-index: 15;
     // @extend %center-layout;
     margin: auto;
     
@@ -61,11 +61,11 @@
         position: relative;
         width: 100%;
         height: 20rem;
-        background-image:
-            linear-gradient($Arizona-7-hex 0%,
-                $Arizona-6-rgba 40%, $Arizona-6-rgba 50%, $Arizona-6-rgba 75%, $Arizona-7-hex 100%),
-            linear-gradient($Arizona-6-rgba 0%, $Arizona-6-rgba 100%),
-            url('../assets/hero-mobile_6.jpg');
+        // background-image:
+        //     linear-gradient($Arizona-7-hex 0%,
+        //         $Arizona-6-rgba 40%, $Arizona-6-rgba 50%, $Arizona-6-rgba 75%, $Arizona-7-hex 100%),
+        //     linear-gradient($Arizona-6-rgba 0%, $Arizona-6-rgba 100%),
+        //     url('../assets/hero-mobile_6.jpg');
         @extend %background;
         background-clip: padding-box;
 

@@ -1,18 +1,25 @@
 @import './colors.scss';
 
 .move-right {
-    transform: translateX(-1500%);
+    transform: translateX(-1500%) !important;
     transition: all 1s ease-in-out;
 }
 
 .move-left {
     
-    transform: translateX(150%);
+    transform: translateX(0%);
     transition: all .3s ease-in-out;
 }
 
 .fade-out {
     opacity: 0;
+    transition: all .3s ease-in-out;
+
+}
+
+.fade-in {
+    opacity: 1 !important;
+    visibility: visible !important;
     transition: all .3s ease-in-out;
 
 }

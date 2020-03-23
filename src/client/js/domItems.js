@@ -30,7 +30,19 @@ const domStrings = {
     tripDestinationImg: '.trip__img',
     tripDestinationWether: '.trip__weather',
     tripToDestinationCounter: '.trip__counter',
-    tripDestinationWeatherIcon: '.trip__wether-icon img'
+    tripDestinationWeatherIcon: '.trip__wether-icon img',
+    tripContainer: '.trip__container',
+    logout: '#logout-btn',
+    yourTripsList: '#your-trips-list-btn',
+    addItem: '.packing__add-item',
+    addItemForm: '.add-item',
+    addItemToPacking: '#add-item-btn',
+    itemInput: '#item',
+    itemQntInput: '#item-qnt',
+    packingSection: '.packing',
+    yourPacking: '#your-packing-btn',
+    packingContainer: '.packing__container',
+    backArrow: '#back-arrow'
 
 }
 
@@ -68,8 +80,19 @@ const domItems = {
     tripDestinationImg: document.querySelector(domStrings.tripDestinationImg),
     tripDestinationWether: document.querySelector(domStrings.tripDestinationWether),
     tripDestinationWeatherIcon: document.querySelector(domStrings.tripDestinationWeatherIcon),
-    tripToDestinationCounter: document.querySelector(domStrings.tripToDestinationCounter)
-
+    tripToDestinationCounter: document.querySelector(domStrings.tripToDestinationCounter),
+    tripContainer: document.querySelector(domStrings.tripContainer),
+    logoutBtn: document.querySelector(domStrings.logout),
+    yourTripsListBtn: document.querySelector(domStrings.yourTripsList),
+    addItemBtn: document.querySelector(domStrings.addItem),
+    addItemForm: document.querySelector(domStrings.addItemForm),
+    addItemToPackingBtn: document.querySelector(domStrings.addItemToPacking),
+    itemInput: document.querySelector(domStrings.itemInput),
+    itemQntInput: document.querySelector(domStrings.itemQntInput),
+    packingSection: document.querySelector(domStrings.packingSection),
+    yourPackingBtn: document.querySelector(domStrings.yourPacking),
+    packingContainer: document.querySelector(domStrings.packingContainer),
+    backArrow: document.querySelector(domStrings.backArrow)
 }
 
 export default domItems

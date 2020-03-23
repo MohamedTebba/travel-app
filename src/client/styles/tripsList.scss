@@ -7,7 +7,7 @@
     flex-direction: column;
     // position: relative;
     @extend %center-layout;
-    z-index: 15;
+    z-index: 21;
 
     @media(min-width: 768px) {
         // background-color: green;
@@ -40,13 +40,19 @@
         box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
         background-image:
         linear-gradient(0deg, $Arizona-6-hex 0%, $Arizona-6-rgba 30%, $Arizona-6-rgba 100%),
-        url('../assets/hero-mobile_6.jpg');
+        url('../media/hero-mobile_6.jpg');
         @extend %background;
         // margin: 0 1rem;
         
         &:hover {
             box-shadow: 0 10px 20px rgba(82, 74, 74, 0.5);
             transition: all .3s ease-in-out;
+        }
+
+        &:hover .trips-list__btn-container{
+            visibility: visible;
+            opacity: 1;
+            transition: opacity .3s ease-in-out;
         }
 
         &::after {
@@ -72,6 +78,36 @@
             bottom: 0;
             @extend %small-text;
         }
+
+    }
+
+    &__delete-btn, &__view-btn {
+        color: $Arizona-7-hex;
+        border: solid 1px $Arizona-7-hex;
+        @extend %sub-title;
+        border-radius: 5px;
+        padding: .4rem .6rem;
+        text-align: center;
+    }
+    
+    &__view-btn {
+        background-color: $Arizona-4-hex;
+        border: solid 1px $Arizona-4-hex;
+
+    }
+    
+    &__btn-container {
+        height: 25%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
     }
 
