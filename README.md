@@ -21,9 +21,9 @@ A travel application, that includes a simple form where you enter the location y
 ## Setting up the API
 
 ### Step 1: Signup for the APIs keys
--First, you will need to go [here](http://www.geonames.org/export/web-services.html). Signing up will get you the Geonames API key which is a user name.
--Second, you will need to go [here](https://darksky.net/dev). Signing up will get you the Dark Sky API key.
--Finally, you will need to go [here](https://pixabay.com/api/docs/). Signing up will get you the Pixabay API key.
+- First, you will need to go [here](http://www.geonames.org/export/web-services.html). Signing up will get you the Geonames API key which is a user name.
+- Second, you will need to go [here](https://darksky.net/dev). Signing up will get you the Dark Sky API key.
+- Finally, you will need to go [here](https://pixabay.com/api/docs/). Signing up will get you the Pixabay API key.
 
 ### Step 2: Environment Variables
 - [ ] Create a new ```.env``` file in the root of the project
