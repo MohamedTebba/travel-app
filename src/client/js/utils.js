@@ -36,7 +36,7 @@ export const postData = async (url = "", data = {}) => {
 export const registrationNewUser = (password, confirmedPassword, name) => {
     if (password === confirmedPassword) {
         localStorage.clear();
-        const user = new User(name, password);
+        const user = new User(name.toLowerCase(), password);
         user.storeUser(user);
         return true;
     } else {
@@ -50,7 +50,7 @@ export const login = (userName, userPassword) => {
         const storedUser = JSON.parse(localStorage.getItem("user"));
         if (
             storedUser &&
-            storedUser.name === userName &&
+            storedUser.name === userName.toLowerCase() &&
             storedUser.password === userPassword
         ) {
             toggleLog(true);
@@ -128,3 +128,4 @@ export const counter = flightTime => {
 export const toCelsius = fTemp => {
     return Math.round((fTemp - 32) * (5 / 9));
 };
+

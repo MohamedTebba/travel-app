@@ -17,8 +17,7 @@ const {
     humbergerMenu,
     mobileMenu,
     nameInput,
-    passwordInput,
-    yourTripsListBtn
+    passwordInput
 } = domItems;
 
 export const turnOffScreen = elements => {

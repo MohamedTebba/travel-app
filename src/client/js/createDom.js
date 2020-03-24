@@ -114,7 +114,7 @@ export const clearTripScreen = () => {
 /**function to create the packing list */
 export const packingItemsScreen = (destination, packing) => {
     packingContainer.innerHTML = ''
-    const destinationElement = `<h1 class="packing__dest">Trip to ${destination}</h1>`
+    const destinationElement = `<h1 class="packing__dest">Let's pack for your trip to ${destination}</h1>`
     packingContainer.insertAdjacentHTML('afterbegin', destinationElement)
     let packElement =''
     packing.forEach(pack => {
