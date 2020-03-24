@@ -12,15 +12,19 @@ import "./styles/pageAnimation.scss";
 import "./styles/packingList.scss";
 
 //Import js files
-import { User, toggleLog } from "./js/User";
 import domItems from "./js/domItems";
-import mobileUIController from "./js/smallDevicesCtrl";
-import wideDevicesCtrl from "./js/wideDevicesCtrl";
-import { onSavingATrip, onLoginEvent, onLogoutEvent, onMobileMenuEvent } from "./js/screensCtrl";
-// import "./js/mobileMenu";
-import loginScreen from "./js/loginScreen";
-const { getCode } = require("country-list");
-import { Trips, Trip } from "./js/Trip";
+import smallDevicesSetUp from "./js/smallDevicesSetUp";
+import wideDevicesSetUp from "./js/wideDevicesSetUp";
+import {
+    onSavingATrip,
+    onLoginEvent,
+    onLogoutEvent,
+    onMobileMenuEvent,
+    closeMobileMenu,
+    loginScreen
+} from "./js/screensCtrl";
+import Trip from "./js/Trip";
+import TripsList from "./js/TripsList";
 import {
     updateTripUI,
     updateTripsList,
@@ -55,7 +59,7 @@ library.add(faList);
 library.add(faSquare);
 library.add(faArrowLeft);
 dom.watch();
-let gottenID
+/**import dom elements */
 const {
     loginBtn,
     logoutBtn,
@@ -67,10 +71,7 @@ const {
     tripCityInput,
     tripCountryInput,
     tripScreen,
-    saveTripScreen,
     tripsListScreen,
-    signInScreen,
-    splashScreen,
     yourTripsListBtn,
     mobileMenu,
     humbergerMenu,
@@ -81,11 +82,14 @@ const {
     itemQntInput,
     packingSection,
     yourPackingBtn,
-    backArrow
+    backArrow,
+    tripTabbar
 } = domItems;
-// const user = new User(uuidv4())
-const tripsList = new Trips();
+
+const tripsList = new TripsList();
 const user = JSON.parse(localStorage.getItem("user"));
+/**gottenID is to store temporarily a trip id to use it when saving packing */
+let gottenID;
 
 /**SET UP CURRENT TIME AND DATE AS DEFULT VALUES */
 const currentDate = getCurrentDate();
@@ -98,13 +102,13 @@ document.addEventListener("click", e => e.preventDefault());
 /**CHECK THE DOCUMENT ON LOADING OR ON RESIZING FOR WIDTH CHANGE TO APPLY EITHER MOBILE SETTINGS OR DESKTOP SETTINGS */
 onload = () => {
     if (innerWidth >= 768) {
-        wideDevicesCtrl();
+        wideDevicesSetUp();
         if (tripsList.getTripsList()) {
-            // tripsList.trips = 
+            /**if there is any saved trips, update the UI */
             updateTripsList(tripsList.getTripsList());
         }
     } else {
-        mobileUIController();
+        smallDevicesSetUp();
         if (tripsList.getTripsList()) {
             updateTripsList(tripsList.getTripsList());
         }
@@ -113,25 +117,26 @@ onload = () => {
 
 onresize = () => {
     if (innerWidth >= 768) {
-        wideDevicesCtrl();
+        wideDevicesSetUp();
         if (tripsList.getTripsList()) {
             updateTripsList(tripsList.getTripsList());
         }
     } else {
-        mobileUIController();
+        smallDevicesSetUp();
         if (tripsList.getTripsList()) {
             updateTripsList(tripsList.getTripsList());
         }
     }
 };
 
-/**DISPLAY SCREENS AS USER IS LOGGED IN */
+/**DISPLAY CORRESPONDENT SCREENS AS USER IS LOGGED IN */
 if (user) {
     if (user.logged) {
         onLoginEvent();
     }
 }
 
+/**LOGIN EVENT */
 loginBtn.addEventListener("click", () => {
     const userName = nameInput.value;
     const userPassword = passwordInput.value;
@@ -141,17 +146,19 @@ loginBtn.addEventListener("click", () => {
     }
 });
 
-saveTripBtn.addEventListener("click", () => {
+/**EVENTS WHEN USER SAVES A TRIP */
+saveTripBtn.addEventListener("click", async () => {
     const city = tripCityInput.value;
     const country = tripCountryInput.value;
     const departingTime = tripTimeInput.value;
     const departingDate = tripDateInput.value;
     const location = city + " " + country;
 
+    /**FULLTIME IS DEPARTING TIME IN MILLISECONDS */
     const fullTime = new Date(departingDate + " " + departingTime).getTime();
-    /**dateonly is for trips within the week**/
+    /**DATEONLY IS THE DATE OF THE START TIME OF THE DEPARTING DAY, FOR TRIPS WHICH ARE WITHIN THE CURRENT WEEK TO GET WEATHER OF THAT SPECIFIC DAY**/
     const dateOnly = new Date(departingDate + " 00:00:00");
-
+    /**SEVENDAYSFROMNOW IS TO CALCULATE ONE WEEK FROM THE CURRENT DATE */
     const sevenDaysFromNow = Date.now() + 6.048e8;
 
     if (city && country && departingDate && departingTime) {
@@ -159,53 +166,73 @@ saveTripBtn.addEventListener("click", () => {
         if (fullTime < Date.now()) {
             alert("You have put a past date, try again!");
         } else {
-            /**CHECK IF THE USER HAS ENTERED A DATE WITHIN THE WEEK OR FAR AWAY */
+            /**CHECK IF THE USER HAS ENTERED A DATE WITHIN THE WEEK OR NOT */
             if (fullTime > sevenDaysFromNow) {
-                postData("http://localhost:8000/", {
-                    placename: location,
-                    fullTime,
-                    dateOnly: false
-                });
-                getData("http://localhost:8000/*").then(res => {
-                    const newTrip = new Trip(
-                        uuidv4(),
-                        res.imgURL,
-                        res.summary,
-                        res.temperature,
-                        res.icon,
-                        location,
-                        city,
-                        fullTime
-                    );
-                    console.log(newTrip.id)
-                    updateTripUI(newTrip.id, city, res, fullTime);
-                    tripsList.addTrip(newTrip);
-                    updateTripsList(tripsList.getTripsList());
-                    onSavingATrip(currentTime, currentDate);
-                });
+                
+                try {
+                    const server = await fetch('http://127.0.0.1:8000')
+                    if(server.status === 200){
+                        postData("http://127.0.0.1:8000/", {
+                            placename: location,
+                            fullTime,
+                            dateOnly: false
+                        });
+                        getData("http://127.0.0.1:8000/*").then(res => {
+                            const newTrip = new Trip(
+                                uuidv4(),
+                                res.imgURL,
+                                res.summary,
+                                res.temperature,
+                                res.icon,
+                                location,
+                                city,
+                                fullTime
+                            );
+                            updateTripUI(newTrip.id, city, res, fullTime);
+                            tripsList.addTrip(newTrip);
+                            updateTripsList(tripsList.getTripsList());
+                            onSavingATrip(currentTime, currentDate);
+                        });
+                    }else{
+                        alert('server is offline!')
+                    }
+                } catch (error) {
+                    console.log(`we couldn't reach the server with `, error)
+                }
+                
+                
             } else {
-                postData("http://localhost:8000/", {
-                    placename: location,
-                    fullTime: false,
-                    dateOnly
-                });
-                getData("http://localhost:8000/*").then(res => {
-                    const newTrip = new Trip(
-                        uuidv4(),
-                        res.imgURL,
-                        res.summary,
-                        res.temperature,
-                        res.icon,
-                        location,
-                        city,
-                        fullTime
+                
+                try {
+                    const server = await fetch('http://127.0.0.1:8000')
+                    if(server.status === 200){
+                        postData("http://127.0.0.1:8000/", {
+                            placename: location,
+                            fullTime: false,
+                            dateOnly
+                        });
+                    getData("http://127.0.0.1:8000/*").then(res => {
+                        const newTrip = new Trip(
+                            uuidv4(),
+                            res.imgURL,
+                            res.summary,
+                            res.temperature,
+                            res.icon,
+                            location,
+                            city,
+                            fullTime
                         );
-                    console.log(newTrip.id)
-                    updateTripUI(newTrip.id, city, res, fullTime);
-                    tripsList.addTrip(newTrip);
-                    updateTripsList(tripsList.getTripsList());
-                    onSavingATrip(currentTime, currentDate);
+                        updateTripUI(newTrip.id, city, res, fullTime);
+                        tripsList.addTrip(newTrip);
+                        updateTripsList(tripsList.getTripsList());
+                        onSavingATrip(currentTime, currentDate);
                 });
+                    }else{
+                        alert('server is offline!')
+                    }
+                } catch (error) {
+                    console.log(`we couldn't reach the server with `, error)
+                }
             }
         }
     } else {
@@ -228,74 +255,81 @@ document.querySelector(".inner-container").addEventListener("click", e => {
     }
 });
 
-logoutBtn.addEventListener("click", () => {
-    logout();
-    onLogoutEvent();
+/**MOBILE MENU ANIMATION */
+humbergerMenu.addEventListener("click", onMobileMenuEvent);
+
+/**PACKING SECTION ADD AND GO BACKWARD EVENTS */
+packingSection.addEventListener("click", e => {
+    if (e.target.closest("." + addItemBtn.classList[0])) {
+        addItemForm.classList.add("fade-in");
+    }
+
+    if (e.target.closest("#" + backArrow.id)) {
+        packingSection.classList.add("move-right");
+    }
+
+    if (e.target.closest("#remove-item")) {
+        const itemID = e.target.parentElement.id;
+
+        tripsList.deletePackingItem(gottenID, itemID);
+        const trip = tripsList.getTripByID(gottenID)[0];
+        packingItemsScreen(trip.city, trip.packing);
+    }
 });
 
-humbergerMenu.addEventListener('click', onMobileMenuEvent)
-
-yourTripsListBtn.addEventListener('click', () => {
-    if(innerWidth < 768) {
-        console.log('your trips list')
-        onMobileMenuEvent()
-        // tripsListScreen.style.display = 'grid'
-        // tripScreen.style.display = 'none'
-        tripsListScreen.classList.remove("move-right");
-    }
-})
-
-/**Packing */
-packingSection.addEventListener('click', (e) => {
-    if(e.target.closest('.'+addItemBtn.classList[0])) {
-        addItemForm.classList.add('fade-in')
+/**ADDITEM FORM EXIT THE FORM OR SAVING ITEM TO LIST, EVENTS */
+addItemForm.addEventListener("click", e => {
+    if (e.target === addItemForm) {
+        addItemForm.classList.remove("fade-in");
     }
 
-    if(e.target.closest('#'+backArrow.id)){
-        packingSection.classList.add('move-right')
-    }
-})
-
-addItemForm.addEventListener('click', (e) => {
-    if(e.target === addItemForm) {
-        addItemForm.classList.remove('fade-in')
-    }
-
-    if(e.target === addItemToPackingBtn) {
-        console.log('item has been added')
-        const item = itemInput.value
-        const itemQnt = itemQntInput.value
-        if(item && itemQnt) {
-            console.log(item, itemQnt, gottenID)
+    if (e.target === addItemToPackingBtn) {
+        const item = itemInput.value;
+        const itemQnt = itemQntInput.value;
+        if (item && itemQnt) {
             tripsList.addPacking(gottenID, {
+                id: uuidv4(),
                 item,
                 itemQnt
-            })
-            const trip = tripsList.getTripByID(gottenID)[0]
-            packingItemsScreen(trip.city, trip.packing)
-            itemInput.value = ''
-            itemQntInput.value = ''
-            addItemForm.classList.remove('fade-in')
-            
-        }else{
-            alert('all fields are required!')
+            });
+            const trip = tripsList.getTripByID(gottenID)[0];
+            packingItemsScreen(trip.city, trip.packing);
+            itemInput.value = "";
+            itemQntInput.value = "";
+            addItemForm.classList.remove("fade-in");
+        } else {
+            alert("all fields are required!");
         }
     }
-})
+});
 
-yourPackingBtn.addEventListener('click', () => {
-    onMobileMenuEvent()
-    const id = tripScreen.id
-    if(id){
-        // console.log(dest.innerHTML)
-        gottenID = id
-        // const trip = tripsList.getTripByCity(dest.innerHTML)
-        // console.log(trip)
-        const trip = tripsList.getTripByID(gottenID)[0]
-        packingItemsScreen(trip.city, trip.packing)
-        packingSection.classList.remove('move-right')
-    }else{
-        alert('select a trip')
-    }
+/**LOGOUT, VIEW TRIPS LIST AND VIEW PACKING LIST, EVENTS */
+Array.from([mobileMenu, tripTabbar]).forEach(element => {
+    element.addEventListener("click", e => {
+        if (e.target.closest("." + yourPackingBtn.classList[0])) {
+            const id = tripScreen.id;
+            if (id) {
+                gottenID = id;
+                const trip = tripsList.getTripByID(gottenID)[0];
+                packingItemsScreen(trip.city, trip.packing);
+                packingSection.classList.remove("move-right");
+                closeMobileMenu();
+            } else {
+                alert("select a trip");
+            }
+        }
 
-})
+        if (e.target.closest("." + yourTripsListBtn.classList[0])) {
+            if (innerWidth < 768) {
+                tripsListScreen.classList.remove("move-right");
+                closeMobileMenu();
+            }
+        }
+
+        if (e.target === logoutBtn) {
+            logout();
+            onLogoutEvent();
+            closeMobileMenu();
+        }
+    });
+});

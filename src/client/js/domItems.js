@@ -32,18 +32,18 @@ const domStrings = {
     tripToDestinationCounter: '.trip__counter',
     tripDestinationWeatherIcon: '.trip__wether-icon img',
     tripContainer: '.trip__container',
+    tripTabbar: '.trip__tabbar',
     logout: '#logout-btn',
-    yourTripsList: '#your-trips-list-btn',
+    yourTripsList: '.your-trips-list-btn',
     addItem: '.packing__add-item',
     addItemForm: '.add-item',
     addItemToPacking: '#add-item-btn',
     itemInput: '#item',
     itemQntInput: '#item-qnt',
     packingSection: '.packing',
-    yourPacking: '#your-packing-btn',
+    yourPacking: '.your-packing-btn',
     packingContainer: '.packing__container',
-    backArrow: '#back-arrow'
-
+    backArrow: '#back-arrow',
 }
 
 
@@ -92,7 +92,8 @@ const domItems = {
     packingSection: document.querySelector(domStrings.packingSection),
     yourPackingBtn: document.querySelector(domStrings.yourPacking),
     packingContainer: document.querySelector(domStrings.packingContainer),
-    backArrow: document.querySelector(domStrings.backArrow)
+    backArrow: document.querySelector(domStrings.backArrow),
+    tripTabbar: document.querySelector(domStrings.tripTabbar)
 }
 
 export default domItems

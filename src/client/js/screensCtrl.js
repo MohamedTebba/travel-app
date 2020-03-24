@@ -1,30 +1,25 @@
 import domItems from "./domItems";
-import { User } from "./User";
 import { greetingUser } from "./createDom";
-import { Trips } from "./Trip";
-import { registrationNewUser } from "./utils";
+import { registrationNewUser, login } from "./utils";
 
 const {
     signInScreen,
     signUpScreen,
     splashScreen,
-    registerUser,
     welcomeScreen,
     saveTripScreen,
     tripScreen,
     tripsListScreen,
-    addTripBtnByClass,
-    newNameInput,
-    newPasswordInput,
-    confirmPasswordInput,
     tripCityInput,
     tripCountryInput,
     tripDateInput,
     tripTimeInput,
     humbergerMenu,
-    mobileMenu
+    mobileMenu,
+    nameInput,
+    passwordInput,
+    yourTripsListBtn
 } = domItems;
-const tripsList = new Trips();
 
 export const turnOffScreen = elements => {
     if (elements.length) {
@@ -68,9 +63,7 @@ export const moveSaveTripScreenToRight = () => {
 };
 
 export const onAddTripEvent = () => {
-    // tripScreen.style.display = 'none'
     saveTripScreen.classList.remove("move-right");
-    // tripsListScreen.style.display = 'none'
     turnOffScreen([tripScreen, tripsListScreen]);
 };
 
@@ -89,7 +82,6 @@ export const onSavingATrip = (currentTime, currentDate) => {
 export const onLoginEvent = () => {
     signInScreen.style.display = "none";
     splashScreen.style.display = "none";
-    // saveTripScreen.style.display = 'none'
     tripScreen.style.display = "grid";
     tripsListScreen.style.display = "flex";
     saveTripScreen.style.display = "flex";
@@ -112,4 +104,31 @@ export const onLogoutEvent = () => {
 export const onMobileMenuEvent = () => {
     humbergerMenu.classList.toggle('toggle-burger')
     mobileMenu.classList.toggle('toggle-mobile-menu')
+}
+
+export const closeMobileMenu = () => {
+    humbergerMenu.classList.remove('toggle-burger')
+    mobileMenu.classList.remove('toggle-mobile-menu')
+
+}
+
+export  const loginScreen = (userName, userPassword) => {
+    if (login(userName, userPassword)) {
+        setTimeout(() => {
+            signInScreen.classList.add("move-right");
+            splashScreen.classList.add("move-right");
+        }, 100);
+
+        saveTripScreen.style.display = "flex";
+        saveTripScreen.classList.add("move-right");
+        if (innerWidth >= 768) {
+            tripsListScreen.style.display = "flex";
+            tripScreen.style.display = "flex";
+        } else {
+            tripsListScreen.style.display = "grid";
+            tripScreen.style.display = "grid";
+        }
+        nameInput.value = "";
+        passwordInput.value = "";
+    }
 }

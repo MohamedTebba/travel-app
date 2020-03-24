@@ -1,7 +1,7 @@
-@import './colors.scss';
-@import './standard.scss';
+@import "./colors.scss";
+@import "./standard.scss";
 
-.packing{
+.packing {
     color: $Arizona-4-hex;
     height: 100vh;
     width: 100%;
@@ -10,76 +10,118 @@
     z-index: 25;
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     align-items: center;
-    // text-transform: capitalize;
     @include description();
+
     &::first-letter {
         text-transform: capitalize;
     }
-    
-    #back-arrow{
+
+    #back-arrow {
         position: absolute;
         left: 2rem;
         top: 2rem;
         cursor: pointer;
     }
 
-    &__container{
+    &__container {
         width: 100%;
         display: flex;
         flex-direction: column;
-        // justify-content: space-between;
         align-items: center;
-        // text-transform: capitalize;
     }
-    
-    &__dest{
+
+    &__dest {
         padding: 1rem 0;
     }
-    
-    &__list{
-        // height: 80%;
+
+    &__list {
         margin-top: 2rem;
         width: 80%;
         max-width: 450px;
-        // background-color: red; 
-        // margin: 0;
         list-style: none;
         padding: 0;
         display: flex;
         flex-direction: column;
-        
-        li{
-            // background-color: green;
+
+        li {
+            max-width: 450px;
+            position: relative;
             display: flex;
             justify-content: space-between;
-            padding: .5rem 0;
-            
-            span > *{
+            padding: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+
+            @media (min-width: 768px) {
+                transition: all 0.3s ease-in-out;
+            }
+
+            span>* {
                 margin-right: 1rem;
+            }
+
+            a {
+                color: $Arizona-7-hex;
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+                top: 0;
+                right: 0;
+                background-color: $Arizona-3-hex;
+                padding: 0.4rem 0.8rem;
+                border-radius: 1rem;
+                @extend %small-text;
+                transform: translateX(150%);
+                transition: all 0.5s ease-in-out;
+
+                @media (min-width: 768px) {
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+
+            &:hover {
+                transform: translateX(-5%);
+                max-width: 200px;
+                transition: all 0.5s ease-in-out;
+
+                @media (min-width: 768px) {
+                    max-width: 300px;
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+
+            &:hover a {
+                visibility: visible;
+                opacity: 1;
+                transform: translateX(110%);
+                transition: all 0.5s ease-in-out;
+
+                @media (min-width: 768px) {
+                    transition: all 0.3s ease-in-out;
+                }
             }
         }
     }
 
-    &__add-item{
-        // background-color: green;
+    &__add-item {
         display: block;
         width: fit-content;
         margin-left: 1rem;
         margin-top: 1rem;
         font-size: 1rem;
         font-weight: 600;
-        padding: .4rem;
-        & > * {
+        padding: 0.4rem;
+
+        &>* {
             margin-right: 1rem;
         }
+
         cursor: pointer;
     }
-    
 }
 
-.add-item{
+.add-item {
     opacity: 0;
     visibility: hidden;
     height: 100vh;
@@ -90,21 +132,22 @@
     top: 0;
     left: 0;
     display: flex;
-    flex-direction: column;   
-    transition: all .3s ease-in-out;
-    
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+
     &__container {
         background-color: $Arizona-7-hex;
         padding: 1rem;
         width: 280px;
-        @media(min-width: 768px) {
+
+        @media (min-width: 768px) {
             width: 320px;
         }
+
         display: flex;
-        flex-direction: column;   
+        flex-direction: column;
         justify-content: space-between;
         box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
         border-radius: 1rem;
-
     }
 }

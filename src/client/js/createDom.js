@@ -113,23 +113,15 @@ export const clearTripScreen = () => {
 
 /**function to create the packing list */
 export const packingItemsScreen = (destination, packing) => {
-    // packingSection.innerHTML = ''
     packingContainer.innerHTML = ''
     const destinationElement = `<h1 class="packing__dest">Trip to ${destination}</h1>`
     packingContainer.insertAdjacentHTML('afterbegin', destinationElement)
     let packElement =''
     packing.forEach(pack => {
-        packElement+=`<li><span><i class="far fa-square"></i>${pack.item}</span><span class="qnt">${pack.itemQnt}</span></li>`
+        packElement+=`<li id="${pack.id}"><span><i class="far fa-square"></i>${pack.item}</span><span class="qnt">${pack.itemQnt}</span><a id="remove-item" href="">delete</a></li>`
     })
-    // const addBtn = `<span class="packing__add-item"><i class="fas fa-plus"></i>add item</span>`
-    
-
     const ul = document.createElement('ul')
     ul.setAttribute('class', 'packing__list')
     packingContainer.insertAdjacentElement('beforeend',ul)
     ul.insertAdjacentHTML('afterbegin', packElement)
-    // ul.insertAdjacentHTML('beforeend', addBtn)
-    // ul.insertAdjacentElement('beforeend', span)
-    // span.insertAdjacentHTML('afterbegin', i)
-    
 }

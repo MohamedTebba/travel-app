@@ -1,4 +1,4 @@
-@import './colors.scss';
+@import "./colors.scss";
 
 .move-right {
     transform: translateX(-1500%) !important;
@@ -6,28 +6,23 @@
 }
 
 .move-left {
-    
     transform: translateX(0%);
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .fade-out {
     opacity: 0;
-    transition: all .3s ease-in-out;
-
+    transition: all 0.3s ease-in-out;
 }
 
 .fade-in {
     opacity: 1 !important;
     visibility: visible !important;
-    transition: all .3s ease-in-out;
-
+    transition: all 0.3s ease-in-out;
 }
 
 .toggle-burger {
-    // background-color: red;
-
-    span {        
+    span {
         background-color: $Arizona-1-hex !important;
 
         &:first-child {

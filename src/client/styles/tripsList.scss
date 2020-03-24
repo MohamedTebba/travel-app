@@ -1,58 +1,53 @@
-@import './colors.scss';
-@import './standard.scss';
+@import "./colors.scss";
+@import "./standard.scss";
 
-.trips-list{
+.trips-list {
     display: none;
     @extend %display-center;
     flex-direction: column;
-    // position: relative;
     @extend %center-layout;
     z-index: 21;
 
-    @media(min-width: 768px) {
-        // background-color: green;
+    @media (min-width: 768px) {
         @include clear-layout();
         width: 38vw;
-        // display: grid;
         grid-column: 2/3;
         grid-row: 1/2;
         display: none;
         z-index: 10 !important;
         max-height: 100vh;
-        
     }
-    
-    &__container{
+
+    &__container {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        
     }
 
-
-    &__card{
+    &__card {
         position: relative;
         height: 17.2rem;
         width: 11.6rem;
         border-radius: 1rem;
         cursor: pointer;
         box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
-        background-image:
-        linear-gradient(0deg, $Arizona-6-hex 0%, $Arizona-6-rgba 30%, $Arizona-6-rgba 100%),
-        url('../media/hero-mobile_6.jpg');
+        background-image: linear-gradient(0deg,
+                $Arizona-6-hex 0%,
+                $Arizona-6-rgba 30%,
+                $Arizona-6-rgba 100%),
+            url("../media/hero-mobile_6.jpg");
         @extend %background;
-        // margin: 0 1rem;
-        
+
         &:hover {
             box-shadow: 0 10px 20px rgba(82, 74, 74, 0.5);
-            transition: all .3s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
-        &:hover .trips-list__btn-container{
+        &:hover .trips-list__btn-container {
             visibility: visible;
             opacity: 1;
-            transition: opacity .3s ease-in-out;
+            transition: opacity 0.3s ease-in-out;
         }
 
         &::after {
@@ -61,41 +56,40 @@
             width: 100%;
             height: 100%;
             border-radius: 1rem;
-            background-color: rgba(0,0,0,0);
-            transition: background-color .3s ease-in-out;
-        }
-        
-        &:hover::after{
-            background-color: $Arizona-6-rgba;
-            transition: background-color .3s ease-in-out;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.3s ease-in-out;
         }
 
-        span{
+        &:hover::after {
+            background-color: $Arizona-6-rgba;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        span {
             position: absolute;
             display: block;
             color: $Arizona-4-hex;
-            padding: 1rem .8rem;
+            padding: 1rem 0.8rem;
             bottom: 0;
             @extend %small-text;
         }
-
     }
 
-    &__delete-btn, &__view-btn {
+    &__delete-btn,
+    &__view-btn {
         color: $Arizona-7-hex;
         border: solid 1px $Arizona-7-hex;
         @extend %sub-title;
         border-radius: 5px;
-        padding: .4rem .6rem;
+        padding: 0.4rem 0.6rem;
         text-align: center;
     }
-    
+
     &__view-btn {
         background-color: $Arizona-4-hex;
         border: solid 1px $Arizona-4-hex;
-
     }
-    
+
     &__btn-container {
         height: 25%;
         position: absolute;
@@ -104,14 +98,13 @@
         transform: translate(-50%, -50%);
         opacity: 0;
         visibility: hidden;
-        transition: opacity .3s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
     }
 
-    &__header{
+    &__header {
         @include header();
         color: $Arizona-4-hex;
         margin-bottom: 3rem;
@@ -131,33 +124,31 @@
         right: 1rem;
         transform: translateX(-50%);
         box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
-        
+
         &:hover {
             cursor: pointer;
             background-color: $Arizona-3-hex;
             box-shadow: 0 10px 20px rgba(82, 74, 74, 0.5);
-            transition: all .3s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
     }
 }
 
-.inner-container{
+.inner-container {
     display: flex;
-  flex-wrap: nowrap;
-//   overflow-x: scroll;
-overflow-y: auto;
-  
-.trips-list__card {
-    flex: 0 0 auto;
-    margin: 2rem 1rem;
-  }
+    flex-wrap: nowrap;
+    overflow-y: auto;
 
-  width: 320px;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+    .trips-list__card {
+        flex: 0 0 auto;
+        margin: 2rem 1rem;
+    }
 
-   
+    width: 320px;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

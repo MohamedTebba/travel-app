@@ -7,14 +7,7 @@ export class User {
     }
 
     storeUser(user) {
-        // this.users.push(user)
         localStorage.setItem('user', JSON.stringify(user))
-    }
-
-    isItUser(user) {
-        const storedUser = JSON.parse(localStorage.getItem('user'))
-      storedUser.name.toLowerCase() === user.name.toLowerCase() && storedUser.password === user.password ? true :false
-      
     }
 
     getUserName() {
@@ -25,13 +18,9 @@ export class User {
         this.logged = logged
         return this.logged
     }
-
-
 }
 
 export function toggleLog(value) {
     const storedUser = JSON.parse(localStorage.getItem('user'))
     localStorage.setItem('user', JSON.stringify({...storedUser,logged:value}))
-
-
 }

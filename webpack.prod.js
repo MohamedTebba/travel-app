@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const worboxPlugin = require('workbox-webpack-plugin')
+const worboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
     // context: __dirname + "/app",
@@ -12,7 +12,7 @@ module.exports = {
     //     filename: 'bundle.js',
     // },
     entry: {
-        // serviceWorker: './src/client/serviceWorker.js',
+        serviceWorker: './src/client/serviceWorker.js',
         main:'./src/client/index.js',
             },
     mode: 'production',
@@ -34,9 +34,6 @@ module.exports = {
                   {
                     loader: 'file-loader',
                     options: {
-                        // bypassOnDebug: true, // webpack@1.x
-                        // disable: true, // webpack@2.x and newer
-                        // name: '[name].[ext]',
                         outputPath: 'media'
                     },
                   },
@@ -50,6 +47,6 @@ module.exports = {
             filename: "./index.html",
         }),
         new MiniCssExtractPlugin({filename: '[name].css'}),
-        // new worboxPlugin.GenerateSW()
+        new worboxPlugin.GenerateSW()
     ]
 }
