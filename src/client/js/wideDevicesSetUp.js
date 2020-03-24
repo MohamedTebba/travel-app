@@ -1,24 +1,18 @@
 import domItems from "./domItems";
 import {
-    registrationScreen,
     moveSaveTripScreenToRight,
     onAddTripEvent,
     turnOffScreen
 } from "./screensCtrl";
-import {clearTripsListScreen } from "./createDom";
 
 const {
     signInScreen,
     signUpScreen,
     splashScreen,
-    registerUser,
     saveTripScreen,
     tripScreen,
     tripsListScreen,
     addTripBtnByClass,
-    newNameInput,
-    newPasswordInput,
-    confirmPasswordInput,
     newUser
 } = domItems;
 
@@ -39,15 +33,6 @@ export default function wideDevicesSetUp() {
         signInScreen.classList.add("move-right");
         splashScreen.classList.add("move-right");
         turnOffScreen([signInScreen, splashScreen]);
-    });
-
-    /** */
-    registerUser.addEventListener("click", () => {
-        const name = newNameInput.value;
-        const password = newPasswordInput.value;
-        const confirmedPassword = confirmPasswordInput.value;
-        registrationScreen(password, confirmedPassword, name);
-        clearTripsListScreen();
     });
 
     /*** */

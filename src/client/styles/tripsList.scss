@@ -32,11 +32,6 @@
         border-radius: 1rem;
         cursor: pointer;
         box-shadow: 0 10px 20px rgba(82, 74, 74, 0.3);
-        background-image: linear-gradient(0deg,
-                $Arizona-6-hex 0%,
-                $Arizona-6-rgba 30%,
-                $Arizona-6-rgba 100%),
-            url("../media/hero-mobile_6.jpg");
         @extend %background;
 
         &:hover {

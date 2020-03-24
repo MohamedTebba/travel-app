@@ -21,7 +21,9 @@ import {
     onLogoutEvent,
     onMobileMenuEvent,
     closeMobileMenu,
-    loginScreen
+    loginScreen,
+    registrationScreen,
+    
 } from "./js/screensCtrl";
 import Trip from "./js/Trip";
 import TripsList from "./js/TripsList";
@@ -30,14 +32,16 @@ import {
     updateTripsList,
     viewTrip,
     clearTripScreen,
-    packingItemsScreen
+    packingItemsScreen,
+    clearTripsListScreen
 } from "./js/createDom";
 import {
     logout,
     getCurrentDate,
     getCurrentTime,
     postData,
-    getData
+    getData,
+    registrationNewUser
 } from "./js/utils";
 import { v4 as uuidv4 } from "uuid";
 
@@ -83,7 +87,11 @@ const {
     packingSection,
     yourPackingBtn,
     backArrow,
-    tripTabbar
+    tripTabbar,
+    registerUser,
+    newNameInput,
+    newPasswordInput,
+    confirmPasswordInput
 } = domItems;
 
 const tripsList = new TripsList();
@@ -145,7 +153,20 @@ loginBtn.addEventListener("click", () => {
         updateTripsList(tripsList.getTripsList());
     }
 });
+/***Regestration new user */
+registerUser.addEventListener("click", () => {
+    const name = newNameInput.value;
+    const password = newPasswordInput.value;
+    const confirmedPassword = confirmPasswordInput.value;
+    if(registrationNewUser(password, confirmedPassword, name)){
 
+        registrationScreen();
+        clearTripsListScreen();
+        if(innerWidth <= 768){
+            tripScreen.style.display = "grid";
+        }
+    }
+});
 /**EVENTS WHEN USER SAVES A TRIP */
 saveTripBtn.addEventListener("click", async () => {
     const city = tripCityInput.value;

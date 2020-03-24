@@ -34,14 +34,19 @@ export const postData = async (url = "", data = {}) => {
 };
 
 export const registrationNewUser = (password, confirmedPassword, name) => {
-    if (password === confirmedPassword) {
-        localStorage.clear();
-        const user = new User(name.toLowerCase(), password);
-        user.storeUser(user);
-        return true;
-    } else {
-        alert("passwords do not match!");
-        return false;
+    if(password && confirmedPassword && name){
+        if (password === confirmedPassword) {
+            localStorage.clear();
+            const user = new User(name.toLowerCase(), password);
+            user.storeUser(user);
+            return true;
+        } else {
+            alert("passwords do not match!");
+            return false;
+        }
+
+    }else{
+        alert('all fields are required')
     }
 };
 

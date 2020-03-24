@@ -1,6 +1,5 @@
 import domItems from "./domItems";
 import { greetingUser } from "./createDom";
-import { registrationNewUser, login } from "./utils";
 
 const {
     signInScreen,
@@ -34,8 +33,7 @@ export const turnOffScreen = elements => {
     }
 };
 
-export const registrationScreen = (password, confirmedPassword, name) => {
-    if (registrationNewUser(password, confirmedPassword, name)) {
+export const registrationScreen = () => {
         welcomeScreen.style.display = "flex";
         setTimeout(() => {
             signUpScreen.classList.add("move-right");
@@ -50,9 +48,6 @@ export const registrationScreen = (password, confirmedPassword, name) => {
         saveTripScreen.style.display = "flex";
         saveTripScreen.classList.remove("move-right");
         greetingUser();
-    } else {
-        alert("passwords do not match!");
-    }
 };
 
 export const moveSaveTripScreenToRight = () => {

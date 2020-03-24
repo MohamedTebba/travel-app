@@ -27,7 +27,7 @@ export function updateTripUI(id, location, res, time) {
     tripScreen.setAttribute('id', id);
     tripContainer.innerHTML = "";
     const icon = res.icon;
-    const newContent = `<div class="trip__from"> <span>from</span> <h1>london</h1></div>
+    const newContent = `<div class="trip__from"> </div>
     <div class="trip__to"><span>to</span>  <h1>${location}</h1></div>
     <div class="trip__img" style="background-image: linear-gradient(#FFFFFB 0%,
         rgba(38, 38, 38, .35) 40%, rgba(38, 38, 38, .35) 50%, rgba(38, 38, 38, .35) 75%, #FFFFFB 100%),
@@ -114,7 +114,7 @@ export const clearTripScreen = () => {
 /**function to create the packing list */
 export const packingItemsScreen = (destination, packing) => {
     packingContainer.innerHTML = ''
-    const destinationElement = `<h1 class="packing__dest">Let's pack for your trip to ${destination}</h1>`
+    const destinationElement = `<h1 class="packing__dest">Trip to ${destination}</h1>`
     packingContainer.insertAdjacentHTML('afterbegin', destinationElement)
     let packElement =''
     packing.forEach(pack => {

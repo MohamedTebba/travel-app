@@ -1,17 +1,14 @@
 import domItems from "./domItems";
 import {
-    registrationScreen,
     moveSaveTripScreenToRight,
     onAddTripEvent,
     turnOffScreen
 } from "./screensCtrl";
-import { clearTripsListScreen } from "./createDom";
 
 const {
     signInScreen,
     signUpScreen,
     splashScreen,
-    registerUser,
     saveTripScreen,
     tripScreen,
     tripsListScreen,
@@ -19,10 +16,7 @@ const {
     getStarted,
     newUser,
     addTripBtnByClass,
-    addTripBtnById,
-    confirmPasswordInput,
-    newPasswordInput,
-    newNameInput
+    addTripBtnById
 } = domItems;
 
 export default function smallDevicesSetUp() {
@@ -41,16 +35,6 @@ export default function smallDevicesSetUp() {
     newUser.addEventListener("click", () => {
         signUpScreen.style.display = "flex";
         signInScreen.classList.add("move-right");
-    });
-
-    /** */
-    registerUser.addEventListener("click", () => {
-        const name = newNameInput.value;
-        const password = newPasswordInput.value;
-        const confirmedPassword = confirmPasswordInput.value;
-        registrationScreen(password, confirmedPassword, name);
-        clearTripsListScreen();
-        tripScreen.style.display = "grid";
     });
 
     /*** */
