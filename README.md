@@ -2,7 +2,11 @@
 A travel application, that includes a simple form where you enter the location you are traveling to and the date with the time you are leaving. If the trip is within a week, you will get the current weather forecast. If the trip is in the future, you will get a predicted forecast.
 
 ## Other Features
-
+- Remove a trip.
+- Local Storage is used to save data.
+- Packing list for selected trip.
+- Multiple trips can be added.
+- Traditional signin and signup form.
 
 # Project Instructions
 - `npm run dev` or `yarn dev`: to run development mode
@@ -16,10 +20,12 @@ A travel application, that includes a simple form where you enter the location y
 ## Setting up the API
 
 ### Step 1: Signup for the APIs keys
-First, you will need to go [here](https://developer.aylien.com/signup). Signing up will get you an API key. Don't worry, at the time of this course, the API is free to use up to 1000 requests per day or 333 intensive requests. It is free to check how many requests you have remaining for the day.
+First, you will need to go [here](http://www.geonames.org/export/web-services.html). Signing up will get you the Geonames API key which is a user name.
+Second, you will need to go [here](https://darksky.net/dev). Signing up will get you an the Dark Sky API key.
+Finaly, you will need to go [here](https://pixabay.com/api/docs/). Signing up will get you an the Pixabay API key.
 
 ### Step 2: Environment Variables
-Next we need to declare our API keys, which will look something like this:
+Next you need to declare your API keys, which will look something like this:
 ```
 // set aylien API credentias
 var textapi = new aylien({
@@ -30,6 +36,7 @@ var textapi = new aylien({
 - [ ] Create a new ```.env``` file in the root of the project
 - [ ] Fill the .env file with your API keys like this:
 ```
-API_ID=**************************
-API_KEY=**************************
+USER_NAME=*************************
+DARKSKY_KEY=***********************
+PIXABAY_KEY=***********************
 ```
