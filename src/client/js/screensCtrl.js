@@ -1,5 +1,6 @@
 import domItems from "./domItems";
 import { greetingUser } from "./createDom";
+import { login } from "./utils";
 
 const {
     signInScreen,
