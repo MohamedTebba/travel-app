@@ -1,9 +1,7 @@
 let projectData = {};
 
 var path = require("path");
-//require envirement variables
 const fetch = require("node-fetch");
-// import fetch from 'whatwg-fetch'
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");

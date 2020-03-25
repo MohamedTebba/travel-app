@@ -1,4 +1,3 @@
-// import localStorage from './__mocks__/localstorage'
 import {
     registrationNewUser,
     login,
