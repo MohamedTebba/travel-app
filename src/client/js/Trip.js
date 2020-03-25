@@ -16,7 +16,8 @@ export default class Trip {
         this.placename = placename;
         this.city = city;
         this.fullTime = fullTime;
-        this.packing = []
+        this.packing = [];
+        this.expired = false
     }
 
 }

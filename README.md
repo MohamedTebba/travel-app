@@ -1,12 +1,14 @@
 # Project Description
 A travel application, that includes a simple form where you enter the location you are traveling to and the date with the time you are leaving. If the trip is within a week, you will get the current weather forecast. If the trip is in the future, you will get a predicted forecast.
 
-## Other Features
+## Other Features (Extended Project)
 - Remove a trip.
 - Local Storage is used to save data.
 - Packing list for selected trip.
 - Multiple trips can be added.
 - Traditional sign-in and sign-up form.
+- Additional trips are automatically sorted by countdown.
+- Expired trips, their style is changed so it’s clear they're expired.
 - User is kept logged in unless they logout.
 
 # Project Instructions

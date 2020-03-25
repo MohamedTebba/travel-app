@@ -4,30 +4,35 @@ export default class TripsList {
     }
 
     addTrip(trip) {
-        
         const storedTrips = JSON.parse(localStorage.getItem("tripsList"));
         if (storedTrips) {
-            
             storedTrips.push(trip);
-            localStorage.setItem("tripsList", JSON.stringify(storedTrips));
+            const sortedTrips = storedTrips.sort((a,b) => a.fullTime-b.fullTime)
+            localStorage.setItem("tripsList", JSON.stringify(sortedTrips));
         } else {
-            
             this.trips = [];
             this.trips.push(trip);
             localStorage.setItem("tripsList", JSON.stringify(this.trips));
         }
         this.trips = JSON.parse(localStorage.getItem("tripsList"));
-        
     }
     
     getTripsList() {
         const storedTrips = JSON.parse(localStorage.getItem("tripsList"));
-        this.trips = storedTrips;
-        return storedTrips
+        const time = Date.now();
+        const updatedTrips = storedTrips.map(trip => {
+            if(trip.fullTime < time){
+                trip.expired = true;
+            }
+            return trip;
+        })
+        this.trips = updatedTrips;
+        localStorage.setItem("tripsList", JSON.stringify(this.trips));
+        return updatedTrips;
     }
 
     getTripByID(id) {
-        return this.trips.filter(trip => trip.id === id)
+        return this.trips.filter(trip => trip.id === id);
     }
 
 
@@ -44,9 +49,8 @@ export default class TripsList {
         const index = this.trips.findIndex(trip => trip.id === id)
         this.trips.splice(index, 1, trip)
         localStorage.setItem("tripsList", JSON.stringify(this.trips));
-
     }
-
+    
     deletePackingItem(tripID, itemID) {
         const selectedTrip = this.trips.filter(trip => trip.id === tripID )[0]
         const updatedPacking = selectedTrip.packing.filter(item => item.id !== itemID)
@@ -54,6 +58,6 @@ export default class TripsList {
         const index = this.trips.findIndex(trip => trip.id === selectedTrip.id)
         this.trips.splice(index, 1, selectedTrip)
         localStorage.setItem("tripsList", JSON.stringify(this.trips));
-
     }
+    
 }

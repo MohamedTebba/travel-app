@@ -54,6 +54,7 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons/faMapMarkerAlt
 import { faList } from "@fortawesome/free-solid-svg-icons/faList";
 import { faSquare } from "@fortawesome/free-regular-svg-icons/faSquare";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
+import { faExclamationTriangle} from "@fortawesome/free-solid-svg-icons/faExclamationTriangle";
 /**SET UP FONTAWESOME ICONS */
 library.add(faLuggageCart);
 library.add(faHotel);
@@ -62,6 +63,7 @@ library.add(faMapMarkerAlt);
 library.add(faList);
 library.add(faSquare);
 library.add(faArrowLeft);
+library.add(faExclamationTriangle);
 dom.watch();
 /**import dom elements */
 const {
@@ -121,6 +123,7 @@ onload = () => {
             updateTripsList(tripsList.getTripsList());
         }
     }
+
 };
 
 onresize = () => {
@@ -135,6 +138,7 @@ onresize = () => {
             updateTripsList(tripsList.getTripsList());
         }
     }
+
 };
 
 /**DISPLAY CORRESPONDENT SCREENS AS USER IS LOGGED IN */
@@ -189,15 +193,49 @@ saveTripBtn.addEventListener("click", async () => {
         } else {
             /**CHECK IF THE USER HAS ENTERED A DATE WITHIN THE WEEK OR NOT */
             if (fullTime > sevenDaysFromNow) {
-                
                 try {
-                    const server = await fetch('http://127.0.0.1:8000')
+                    const server = await fetch('http://localhost:8000')
                     if(server.status === 200){
-                        postData("http://127.0.0.1:8000/", {
-                            placename: location,
-                            fullTime,
-                            dateOnly: false
-                        });
+                    try {
+                            postData("http://127.0.0.1:8000/", {
+                                placename: location,
+                                fullTime,
+                                dateOnly: false
+                            });
+                            getData("http://127.0.0.1:8000/*").then(res => {
+                                const newTrip = new Trip(
+                                    uuidv4(),
+                                    res.imgURL,
+                                    res.summary,
+                                    res.temperature,
+                                    res.icon,
+                                    location,
+                                    city,
+                                    fullTime
+                                );
+                                updateTripUI(newTrip.id, city, res, fullTime);
+                                tripsList.addTrip(newTrip);
+                                updateTripsList(tripsList.getTripsList());
+                                onSavingATrip(currentTime, currentDate);
+                            });
+                        } catch (error) {
+                            alert(`we couldn't reach the server with `, error)
+                        }
+                        }
+                        
+                    } catch (error) {
+                        alert('server is offline!')
+                }
+            } else {
+                try {
+                    const server = await fetch('http://localhost:8000')
+                    if(server.status === 200){
+                    try {
+                            postData("http://127.0.0.1:8000/", {
+                                placename: location,
+                                fullTime: false,
+                                dateOnly
+                            });
                         getData("http://127.0.0.1:8000/*").then(res => {
                             const newTrip = new Trip(
                                 uuidv4(),
@@ -213,46 +251,14 @@ saveTripBtn.addEventListener("click", async () => {
                             tripsList.addTrip(newTrip);
                             updateTripsList(tripsList.getTripsList());
                             onSavingATrip(currentTime, currentDate);
-                        });
-                    }else{
-                        alert('server is offline!')
-                    }
-                } catch (error) {
-                    console.log(`we couldn't reach the server with `, error)
-                }
-                
-                
-            } else {
-                
-                try {
-                    const server = await fetch('http://127.0.0.1:8000')
-                    if(server.status === 200){
-                        postData("http://127.0.0.1:8000/", {
-                            placename: location,
-                            fullTime: false,
-                            dateOnly
-                        });
-                    getData("http://127.0.0.1:8000/*").then(res => {
-                        const newTrip = new Trip(
-                            uuidv4(),
-                            res.imgURL,
-                            res.summary,
-                            res.temperature,
-                            res.icon,
-                            location,
-                            city,
-                            fullTime
-                        );
-                        updateTripUI(newTrip.id, city, res, fullTime);
-                        tripsList.addTrip(newTrip);
-                        updateTripsList(tripsList.getTripsList());
-                        onSavingATrip(currentTime, currentDate);
-                });
-                    }else{
-                        alert('server is offline!')
-                    }
-                } catch (error) {
-                    console.log(`we couldn't reach the server with `, error)
+                    });
+                        } catch (error) {
+                            alert(`we couldn't reach the server with `, error)
+                        }
+                        }
+                        
+                    } catch (error) {
+                        alert('server is offline!')   
                 }
             }
         }

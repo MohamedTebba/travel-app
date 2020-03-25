@@ -9,7 +9,9 @@ export const getData = async url => {
         const data = await res.json();
         return data;
     } catch (error) {
-        console.log(`we coudn't reach the server to get the data with `, error);
+        alert(`try again! 
+        we coudn't reach the server to get the data with: 
+        ${error} `);
     }
 };
 
@@ -28,8 +30,9 @@ export const postData = async (url = "", data = {}) => {
             return data;
         })
         .catch(err => {
-            alert(`we coudn't reach the server to post the data`);
-            console.log(`we coudn't reach the server to post the data`, err);
+            alert(`try again! 
+            we coudn't reach the server to send the request with: 
+            ${error} `);
         });
 };
 
@@ -133,4 +136,5 @@ export const counter = flightTime => {
 export const toCelsius = fTemp => {
     return Math.round((fTemp - 32) * (5 / 9));
 };
+
 

@@ -49,8 +49,9 @@ export function updateTripUI(id, location, res, time) {
     ${res.summary ? res.summary : "no summary is available"}
         </p>
     </div>
-    <span class="trip__counter">${location} is ${counter(time)} away.
-    </span>`;
+    ${counter(time)!==''?`<span class="trip__counter">${location} is ${counter(time)} away.
+    </span>`:`<span class="trip__counter">${location} is less than a minute away.
+    </span>`}`;
     tripContainer.insertAdjacentHTML("afterbegin", newContent);
 }
 
@@ -59,7 +60,7 @@ export function updateTripsList(tripsList) {
     const fragment = document.createDocumentFragment();
     tripsList.forEach(trip => {
         const tripCard = document.createElement("div");
-        tripCard.setAttribute("class", "trips-list__card");
+        tripCard.setAttribute("class", trip.expired?"trips-list__card expired":"trips-list__card");
         tripCard.setAttribute("id", `${trip.id}`);
         const span = document.createElement("span");
         const destination = document.createTextNode(trip.placename);
@@ -68,6 +69,14 @@ export function updateTripsList(tripsList) {
         icon.style.marginRight = "4px";
         span.appendChild(icon);
         span.appendChild(destination);
+        /**/
+        const warningBtn = document.createElement("a");
+        warningBtn.setAttribute("class", "trips-list__warning-btn")
+        const warningBtnText = document.createTextNode("expired")
+        warningBtn.appendChild(warningBtnText)
+        const warningIcon = `<i class="fas fa-exclamation-triangle"></i>`
+        warningBtn.insertAdjacentHTML('afterbegin', warningIcon)
+         /**/
         const deleteBtn = document.createElement("a");
         deleteBtn.setAttribute("class", "trips-list__delete-btn");
         const deleteBtnText = document.createTextNode("delete");
@@ -78,8 +87,10 @@ export function updateTripsList(tripsList) {
         const btnContainer = document.createElement("div");
         btnContainer.setAttribute("class", "trips-list__btn-container");
         viewBtn.appendChild(viewBtnText);
+        // btnContainer.appendChild(viewBtn);
+        trip.expired?btnContainer.appendChild(warningBtn):btnContainer.appendChild(viewBtn)
         btnContainer.appendChild(deleteBtn);
-        btnContainer.appendChild(viewBtn);
+        
         tripCard.appendChild(btnContainer);
         tripCard.appendChild(span);
         tripCard.style.backgroundImage = `linear-gradient(0deg,#262626 0%, rgba(38, 38, 38, .35) 30%, rgba(38, 38, 38, .35) 100%),url(${trip.imgURL})`;
