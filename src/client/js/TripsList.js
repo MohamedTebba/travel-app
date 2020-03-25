@@ -20,15 +20,17 @@ export default class TripsList {
     getTripsList() {
         const storedTrips = JSON.parse(localStorage.getItem("tripsList"));
         const time = Date.now();
-        const updatedTrips = storedTrips.map(trip => {
-            if(trip.fullTime < time){
-                trip.expired = true;
-            }
-            return trip;
-        })
-        this.trips = updatedTrips;
-        localStorage.setItem("tripsList", JSON.stringify(this.trips));
-        return updatedTrips;
+        if(storedTrips) {
+            const updatedTrips = storedTrips.map(trip => {
+                if(trip.fullTime < time){
+                    trip.expired = true;
+                }
+                return trip;
+            })
+            this.trips = updatedTrips;
+            localStorage.setItem("tripsList", JSON.stringify(this.trips));
+            return updatedTrips;
+        }
     }
 
     getTripByID(id) {
@@ -37,8 +39,8 @@ export default class TripsList {
 
 
     deleteTrip(id) {
-        const stordTrips = JSON.parse(localStorage.getItem("tripsList"));
-        const newTripsList = stordTrips.filter(trip => trip.id !== id);
+        const storedTrips = JSON.parse(localStorage.getItem("tripsList"));
+        const newTripsList = storedTrips.filter(trip => trip.id !== id);
         localStorage.setItem("tripsList", JSON.stringify(newTripsList));
         this.trips = newTripsList;
     }
