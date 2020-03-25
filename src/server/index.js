@@ -99,13 +99,13 @@ app.get("*", async (req, res) => {
                     icon: fullTime ? darkSkyData.currently.icon : currentDay[0].icon
                 });
             } catch (error) {
-                res.send(`coudn't fetch data from pixabay with ${error}`);
+                console.log(`we coudn't fetch data from pixabay with ${error}`);
             }
         } catch (error) {
-            res.send(`coudn't fetch data from darksky with ${error}`);
+            console.log(`we coudn't fetch data from darksky with ${error}`);
         }
     } catch (error) {
-        res.send(`coudn't fetch data from geodata with ${error}`);
+        console.log(`we coudn't fetch data from geodata with ${error}`);
     }
 });
 

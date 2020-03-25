@@ -13,7 +13,7 @@ const request = require("supertest"),
 
 test("It should response the GET method", async () => {
     await request(app);
-    const location = "New York United States";
+    const location = "Paris France";
     const dateOnly = new Date(Date.now()).getTime();
     postData("http://localhost:8000/", {
         placename: location,
